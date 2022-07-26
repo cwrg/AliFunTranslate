@@ -37,7 +37,7 @@ class App
                 }
             }
         }
-        $this->config = include_once __DIR__ . '/Config.php';
+        $this->config = include __DIR__ . '/Config.php';
     }
 
     /**
@@ -46,9 +46,11 @@ class App
      */
     public function run()
     {
-        $path = explode('/', ltrim($this->request->getAttribute('path'), '/'));
-        $controller = isset($path[0]) ?? null;
-        $action = isset($path[1]) ?? null;
+        try {
+            list($controller, $action) = explode('/', ltrim($this->request->getAttribute('path'), '/'));
+        } catch (\Exception $e) {
+            return $this->error('404 Not Found', 404);
+        }
         $controller = "App\\Controller\\" . ucwords($controller);
         if (!class_exists($controller)) {
             return $this->error('404 Not Found', 404);
