@@ -36,8 +36,8 @@ class Translate extends App
                 'key' => $this->config('baidu.key')
             ];
             $content = TranslateService::baidu($config)
-                ->source($this->param('target', 'en'))
-                ->target($this->param('source', 'auto'))
+                ->source($this->param('target', 'auto'))
+                ->target($this->param('source', 'en'))
                 ->translate($this->param('text', ''));
             return $this->success(compact('content'));
         } catch (\Throwable $e) {
