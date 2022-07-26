@@ -1,0 +1,21 @@
+{
+    "name": "root/ali",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App",
+            "Core\\": "Core"
+        },
+        "files": [
+            "Core/Helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "cwrg"
+        }
+    ],
+    "require": {
+        "cwrg/translates": "^1.0.4",
+        "ext-json": "*"
+    }
+}
