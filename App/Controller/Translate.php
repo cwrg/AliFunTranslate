@@ -14,9 +14,9 @@ class Translate extends App
     public function google()
     {
         $content = TranslateService::google()
+            ->source($this->param('source'))
             ->target($this->param('target', 'en'))
-            ->source($this->param('source', ''))
-            ->translate($this->param('text', ''));
+            ->translate($this->param('text'));
         return $this->success(compact('content'));
     }
 
@@ -31,9 +31,9 @@ class Translate extends App
             'key' => $this->config('baidu.key')
         ];
         $content = TranslateService::baidu($config)
-            ->source($this->param('target', 'auto'))
-            ->target($this->param('source', 'en'))
-            ->translate($this->param('text', ''));
+            ->source($this->param('source', 'auto'))
+            ->target($this->param('target', 'en'))
+            ->translate($this->param('text'));
         return $this->success(compact('content'));
     }
 }
