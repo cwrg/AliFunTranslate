@@ -43,6 +43,7 @@ class App
     /**
      * 运行框架
      * @return false|mixed|string
+     * @throws \Throwable
      */
     public function run()
     {
@@ -59,8 +60,14 @@ class App
         if (!method_exists($class, $action)) {
             return $this->error('404 Not Found', 404);
         }
-
-        return call_user_func([$class, $action]);
+        try {
+            return call_user_func([$class, $action]);
+        } catch (\Throwable $e) {
+            if (!$this->config['debug']) {
+                return $this->error('system error', 500, $e->getMessage());
+            }
+            throw $e;
+        }
     }
 
     /**
