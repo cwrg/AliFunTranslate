@@ -14,7 +14,7 @@ class Translate extends App
     public function google()
     {
         $content = TranslateService::google()
-            ->source($this->param('source'))
+            ->source($this->param('source', 'auto'))
             ->target($this->param('target', 'en'))
             ->translate($this->param('text'));
         return $this->success(compact('content'));
