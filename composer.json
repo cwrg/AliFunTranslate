@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "cwrg/translates": "^1.0.4",
+        "cwrg/translates": "^1.0.5",
         "ext-json": "*"
     }
 }
